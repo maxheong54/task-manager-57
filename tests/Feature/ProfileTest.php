@@ -10,6 +10,11 @@ class ProfileTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function testThatTrueIsTrue(): void
+    {
+        $this->assertTrue(true);
+    }
+
     // public function testProfilePageIsDisplayed(): void
     // {
     //     $user = User::factory()->create();

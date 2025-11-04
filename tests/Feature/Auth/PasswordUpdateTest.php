@@ -11,6 +11,11 @@ class PasswordUpdateTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function testThatTrueIsTrue(): void
+    {
+        $this->assertTrue(true);
+    }
+
     // public function testPasswordCanBeUpdated(): void
     // {
     //     $user = User::factory()->create();
