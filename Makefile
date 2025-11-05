@@ -3,7 +3,17 @@ start:
 	PHP_CLI_SERVER_WORKERS=5 php -S 0.0.0.0:$(PORT) -t public
 
 install:
+	composer setup
+
+setup:
 	composer install
+	php artisan key:gen
+	touch database/database.sqlite
+	php artisan migrate
+	php artisan db:seed
+	npm ci
+	npm run build
+
 validate:
 	composer validate
 lint:

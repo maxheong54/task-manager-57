@@ -1,7 +1,5 @@
-# Name of workflow
 name: check
 
-# Trigger the workflow on push or pull request
 on:
   - push
   - pull_request
@@ -9,15 +7,11 @@ on:
 jobs:
   build:
 
-    # The type of machine to run the job on
     runs-on: ubuntu-latest
 
     steps:
-        # Check-out repository under GitHub workspace
-        # https://github.com/actions/checkout
       - uses: actions/checkout@v4
-        # Step's name
-        # Cache installed Composer dependencies
+
       - name: Cache Composer dependencies
         uses: actions/cache@v4
         with:
@@ -25,24 +19,23 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
+
       - name: Setup PHP
-        # Action gives to setup the PHP environment to test application
-        # https://github.com/shivammathur/setup-php
         uses: shivammathur/setup-php@v2
         with:
-          # Specify the PHP version
           php-version: '8.4'
-      - name: Install
-        # Install project
-        run: make install
-      - name: Run linter
-        # Run Linter
-        run: make lint
+
       - name: Create .env file
-        run: echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" > .env
-    #   - name: Run PHPUnit with code coverage
-    #     # Run tests and generate coverage report
-    #     run: make test-coverage
+        run: cp -n .env.example .env
+
+      - name: Install
+        run: make install
+
+      - name: Run linter
+        run: make lint
+
+      - name: Run PHPUnit with code coverage
+        run: make test-coverage
 
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v6
