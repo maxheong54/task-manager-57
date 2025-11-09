@@ -16,7 +16,7 @@ class TaskStatusController extends Controller
     {
         $taskStatuses = TaskStatus::all();
 
-        return view('task_statuses.index', ['taskStatuses' => $taskStatuses]);
+        return view('task_statuses.index', compact('taskStatuses'));
     }
 
     /**
@@ -48,7 +48,7 @@ class TaskStatusController extends Controller
      */
     public function edit(TaskStatus $taskStatus): View
     {
-        return view('task_statuses.edit', ['taskStatus' => $taskStatus]);
+        return view('task_statuses.edit', compact('taskStatus'));
     }
 
     /**
@@ -72,9 +72,12 @@ class TaskStatusController extends Controller
      */
     public function destroy(TaskStatus $taskStatus): RedirectResponse
     {
-        $taskStatus->delete();
-
-        flash('Task status deleted')->success();
+        if ($taskStatus->tasks()->exists() === false) {
+            $taskStatus->delete();
+            flash('Task status deleted')->success();
+        } else {
+            flash('Failed to delete status')->error();
+        }
 
         return redirect(route('task_statuses.index'));
     }

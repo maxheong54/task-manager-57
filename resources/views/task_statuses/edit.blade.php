@@ -12,7 +12,7 @@
                     </div>
                     <div class="mt-2">
                         <input class="rounded border-gray-300 w-2/3" type="text" name="name" id="name"
-                        value="{{ old('message', $taskStatus->name) }}">
+                        value="{{ old('name', $taskStatus->name) }}">
                     </div>
                     <div class="mt-2">
                         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"

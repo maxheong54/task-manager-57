@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -46,5 +47,23 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * @return HasMany<Task, User>
+     */
+    public function authoredTasks(): HasMany
+    {
+        /** @var HasMany<Task, User> */
+        return $this->hasMany(Task::class, 'created_by_id');
+    }
+
+    /**
+     * @return HasMany<Task, User>
+     */
+    public function assignedTasks(): HasMany
+    {
+        /** @var HasMany<Task, User> */
+        return $this->hasMany(Task::class, 'assigned_to_id');
     }
 }

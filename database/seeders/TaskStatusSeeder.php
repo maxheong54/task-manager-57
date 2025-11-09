@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\TaskStatus;
-use DB;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class TaskStatusSeeder extends Seeder

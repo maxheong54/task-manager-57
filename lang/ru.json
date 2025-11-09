@@ -275,5 +275,16 @@
     "Change of status": "Изменение статуса",
     "Status successfully created": "Статус успешно создан",
     "Task status updated": "Статус успешно изменён",
-    "Task status deleted": "Статус успешно удалён"
+    "Task status deleted": "Статус успешно удалён",
+    "Previous": "Предыдущий",
+    "Next": "Следующий",
+    "Status": "Статус",
+    "Author": "Автор",
+    "Executor": "Исполнитель",
+    "Create a task": "Создать задачу",
+    "Apply": "Применить",
+    "Description": "Описание",
+    "Change a task": "Изменение задачи",
+    "View task": "Просмотр задачи",
+    "Failed to delete status": "Не удалось удалить статус"
 }
