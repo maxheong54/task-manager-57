@@ -11,6 +11,9 @@
                     </div>
                     <div class="mt-2">
                         <input class="rounded border-gray-300 w-1/3" type="text" name="name" id="name">
+                        @error('name')
+                            <p class="text-rose-600">@lang($message)</p>
+                        @enderror
                     </div>
                     <div class="mt-2">
                         <label for="description">@lang('Description')</label>
@@ -25,10 +28,13 @@
                     <div>
                         <select class="rounded border-gray-300 w-1/3" name="status_id" id="status_id">
                             <option selected="selected"></option>
-                                @foreach ($taskStatuses as $status)
-                                    <option value="{{ $status->id }}">@lang($status->name)</option>
-                                @endforeach
+                            @foreach ($taskStatuses as $status)
+                                <option value="{{ $status->id }}">@lang($status->name)</option>
+                            @endforeach
                         </select>
+                        @error('status_id')
+                            <p class="text-rose-600">@lang($message)</p>
+                        @enderror
                     </div>
                     <div class="mt-2">
                         <label for="status_id">@lang('Executor')</label>
@@ -36,9 +42,9 @@
                     <div>
                         <select class="rounded border-gray-300 w-1/3" name="assigned_to_id" id="assigned_to_id">
                             <option value selected="selected"></option>
-                                @foreach ($users as $user)
-                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                @endforeach
+                            @foreach ($users as $user)
+                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="mt-2">

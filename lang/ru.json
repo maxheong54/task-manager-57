@@ -286,5 +286,6 @@
     "Description": "Описание",
     "Change a task": "Изменение задачи",
     "View task": "Просмотр задачи",
-    "Failed to delete status": "Не удалось удалить статус"
+    "Failed to delete status": "Не удалось удалить статус",
+    "This is a required field": "Это обязательное поле"
 }

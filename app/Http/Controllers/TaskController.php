@@ -56,6 +56,8 @@ class TaskController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'status_id' => 'required'
+        ], [
+            '*.required' => 'This is a required field'
         ]);
 
         $validated['created_by_id'] = auth()->id();

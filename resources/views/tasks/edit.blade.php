@@ -13,6 +13,9 @@
                     <div class="mt-2">
                         <input class="rounded border-gray-300 w-1/3" type="text" name="name" id="name"
                             value="{{ old('name', $task->name) }}">
+                        @error('name')
+                            <p class="text-rose-600">@lang($message)</p>
+                        @enderror
                     </div>
                     <div class="mt-2">
                         <label for="description">@lang('Description')</label>
@@ -32,6 +35,9 @@
                                 </option>
                             @endforeach
                         </select>
+                        @error('status_id')
+                            <p class="text-rose-600">@lang($message)</p>
+                        @enderror
                     </div>
                     <div class="mt-2">
                         <label for="assigned_to_id">@lang('Executor')</label>
