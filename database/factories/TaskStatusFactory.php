@@ -16,8 +16,10 @@ class TaskStatusFactory extends Factory
      */
     public function definition(): array
     {
+        $statuses = collect(['новая', 'завершена', 'выполняется', 'в архиве']);
+
         return [
-            'name' => fake()->name(),
+            'name' => $statuses->random(),
         ];
     }
 }

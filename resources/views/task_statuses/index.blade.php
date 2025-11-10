@@ -44,7 +44,7 @@
                     </tr>
                 @endforeach
             </table>
-
+            <x-pagination :paginator="$taskStatuses" />
         </div>
     </div>
 </x-app-layout>
