@@ -66,7 +66,7 @@ class TaskController extends Controller
         $validated['created_by_id'] = auth()->id();
         $validated['description'] = $request->input('description', null);
         $validated['assigned_to_id'] = $request->input('assigned_to_id', null);
-        
+
         $task = Task::create($validated);
 
         $task = $task->labels()->sync($request->input('labels', []));
