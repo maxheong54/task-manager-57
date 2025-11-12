@@ -54,7 +54,7 @@ class TaskControllerTest extends TestCase
     {
         $response = $this->post(route('tasks.store', []));
 
-        $response->assertSessionHasErrors('name', 'status_id');
+        $response->assertSessionHasErrors(['name', 'status_id']);
     }
 
     public function testDisplaysEditForm(): void

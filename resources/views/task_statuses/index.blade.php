@@ -3,14 +3,14 @@
         <div class="grid col-span-full">
             <h1 class="mb-5 text-5xl">@lang('Statuses')</h1>
 
-            @can('create', App\Models\TaskStatus::class)
+            @auth
                 <div>
                     <a href="{{ route('task_statuses.create') }}"
                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         @lang('Create a status')
                     </a>
                 </div>
-            @endcan
+            @endauth    
 
             <table class="mt-4">
                 <thead class="border-b-2 border-solid border-black text-left">
@@ -27,7 +27,7 @@
                         <td>@lang($status->name)</td>
                         <td>@lang($status->created_at->format('d.m.Y'))</td>
                         <td>
-                            @can('update', $status)
+                            @auth
                                 <form method="POST" action="{{ route('task_statuses.destroy', $status) }}" class="inline">
                                     @csrf
                                     @method('DELETE')
@@ -39,7 +39,7 @@
                                 <a class="text-blue-600 hover:text-blue-900" href="{{ route('task_statuses.edit', $status) }}">
                                     @lang('Change')
                                 </a>
-                            @endcan
+                            @endauth    
                         </td>
                     </tr>
                 @endforeach
