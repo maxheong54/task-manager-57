@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LabelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TaskStatusController;
@@ -19,8 +20,21 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('task_statuses', TaskStatusController::class)
-        ->except(['show']);
+    ->only(['index']);
+Route::resource('task_statuses', TaskStatusController::class)
+    ->except(['index', 'show'])
+    ->middleware('auth');
 
-Route::resource('tasks', TaskController::class);
+Route::resource('tasks', TaskController::class)
+    ->except(['index', 'show'])
+    ->middleware('auth');
+Route::resource('tasks', TaskController::class)
+    ->only(['index', 'show']);
+
+Route::resource('labels', LabelController::class)
+    ->only(['index']);
+Route::resource('labels', LabelController::class)
+    ->except(['index', 'show'])
+    ->middleware('auth');
 
 require __DIR__.'/auth.php';

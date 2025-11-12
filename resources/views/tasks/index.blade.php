@@ -35,7 +35,8 @@
 
             @auth
                 <div class="ml-auto">
-                    <a href="{{ route('tasks.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
+                    <a href="{{ route('tasks.create') }}"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
                         @lang('Create a task')
                     </a>
                 </div>
@@ -69,7 +70,7 @@
                     <td>@lang($task->executor->name ?? '')</td>
                     <td>{{ $task->created_at->format('d.m.Y') }}</td>
                     @auth
-                        <td>
+                        <td class="flex gap-1">
                             @can('delete', $task)
                                 <form method="POST" action="{{ route('tasks.destroy', $task) }}" class="inline">
                                     @csrf

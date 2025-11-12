@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Task extends Model
 {
@@ -44,5 +46,14 @@ class Task extends Model
     {
         /** @var BelongsTo<User, Task> */
         return $this->belongsTo(User::class, 'assigned_to_id');
+    }
+
+    /**
+     * @return BelongsToMany<Label, Task, \Illuminate\Database\Eloquent\Relations\Pivot>
+     */
+    public function labels(): BelongsToMany
+    {
+        /** @var BelongsToMany<Label, Task> */
+        return $this->belongsToMany(Label::class);
     }
 }

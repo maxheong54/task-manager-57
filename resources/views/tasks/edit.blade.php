@@ -52,11 +52,16 @@
                         </select>
                     </div>
                     <div class="mt-2">
-                        <label for="status_id">Метки</label>
+                        <label for="status_id">@lang('Tags')</label>
                     </div>
                     <div>
+                        @php
+                            $selectedLabelsID = $task->labels->pluck('id')->toArray();
+                        @endphp
                         <select class="rounded border-gray-300 w-1/3 h-32" name="labels[]" id="labels[]" multiple>
-                            {{-- labels --}}
+                            @foreach ($labels as $label)
+                                <option value="{{ $label->id }}" @selected(in_array($label->id, $selectedLabelsID))>{{ $label->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="mt-2">

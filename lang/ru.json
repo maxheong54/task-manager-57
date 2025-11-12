@@ -287,5 +287,15 @@
     "Change a task": "Изменение задачи",
     "View task": "Просмотр задачи",
     "Failed to delete status": "Не удалось удалить статус",
-    "This is a required field": "Это обязательное поле"
+    "This is a required field": "Это обязательное поле",
+    "Create a label": "Создать метку",
+    "Label deleted": "Метка успешно удалена",
+    "Label successfully created": "Метка успешно создана",
+    "Change label": "Изменение метки",
+    "Label updated": "Метка успешно изменена",
+    "A label with this name already exists": "Метка с таким именем уже существует",
+    "Task successfully created": "Задача успешно создана",
+    "Task updated": "Задача успешно изменена",
+    "Task deleted": "Задача успешно удалена",
+    "Failed to delete label": "Не удалось удалить метку"
 }

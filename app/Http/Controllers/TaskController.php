@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateTaskRequest;
+use App\Models\Label;
 use App\Models\Task;
 use App\Models\TaskStatus;
 use App\Models\User;
@@ -38,12 +39,14 @@ class TaskController extends Controller
     {
         $taskStatuses = TaskStatus::all();
         $users = User::all();
+        $labels = Label::all();
 
         return view(
             'tasks.create',
             compact(
                 'taskStatuses',
-                'users'
+                'users',
+                'labels'
             )
         );
     }
@@ -61,10 +64,12 @@ class TaskController extends Controller
         ]);
 
         $validated['created_by_id'] = auth()->id();
-        $validated['description'] = $request->input('description', '');
+        $validated['description'] = $request->input('description', null);
         $validated['assigned_to_id'] = $request->input('assigned_to_id', null);
+        
+        $task = Task::create($validated);
 
-        Task::create($validated);
+        $task = $task->labels()->sync($request->input('labels', []));
 
         flash('Task successfully created')->success();
 
@@ -85,11 +90,13 @@ class TaskController extends Controller
     public function edit(Task $task): View
     {
         $taskStatuses = TaskStatus::all();
+        $labels = Label::all();
         $users = User::all();
         return view('tasks.edit', compact(
             'task',
             'taskStatuses',
-            'users'
+            'labels',
+            'users',
         ));
     }
 
@@ -107,6 +114,7 @@ class TaskController extends Controller
         $validated['assigned_to_id'] = $request->input('assigned_to_id', null);
 
         $task->update($validated);
+        $task->labels()->sync($request->input('labels', []));
 
         flash('Task updated')->success();
 
