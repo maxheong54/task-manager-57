@@ -10,24 +10,30 @@ use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $tasks = Task::paginate(15);
+        $tasks = QueryBuilder::for(Task::class)
+            ->allowedFilters(['status_id', 'created_by_id', 'assigned_to_id'])
+            ->paginate(15);
+
         $taskStatuses = TaskStatus::all();
         $users = User::all();
+        $filters = $request->input('filter', []);
 
         return view(
             'tasks.index',
             compact(
                 'tasks',
                 'taskStatuses',
-                'users'
+                'users',
+                'filters'
             )
         );
     }
