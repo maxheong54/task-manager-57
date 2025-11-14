@@ -297,5 +297,6 @@
     "Task successfully created": "Задача успешно создана",
     "Task updated": "Задача успешно изменена",
     "Task deleted": "Задача успешно удалена",
-    "Failed to delete label": "Не удалось удалить метку"
+    "Failed to delete label": "Не удалось удалить метку",
+    "A status with this name already exists": "Статус с таким именем уже существует"
 }

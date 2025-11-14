@@ -33,10 +33,10 @@ class TaskStatusController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'name' => 'required'
+            'name' => 'required|unique:task_statuses,name'
         ], [
-            '*.required' => 'This is a required field'
-
+            '*.required' => 'This is a required field',
+            'name.unique' => 'A status with this name already exists',
         ]);
 
         TaskStatus::create($validated);
