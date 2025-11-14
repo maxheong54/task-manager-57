@@ -12,7 +12,9 @@
         "laravel/tinker": "^2.10.1",
         "sentry/sentry-laravel": "^4.16",
         "spatie/laravel-html": "^3.12",
-        "spatie/laravel-query-builder": "^6.3"
+        "spatie/laravel-query-builder": "^6.3",
+        "psr/log": "^3.0",
+        "monolog/monolog": "^3.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
