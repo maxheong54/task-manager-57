@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class TaskController extends Controller
@@ -20,7 +21,11 @@ class TaskController extends Controller
     public function index(Request $request): View
     {
         $tasks = QueryBuilder::for(Task::class)
-            ->allowedFilters(['status_id', 'created_by_id', 'assigned_to_id'])
+            ->allowedFilters([
+                AllowedFilter::exact('status_id')->ignore(null)->ignore(''),
+                AllowedFilter::exact('created_by_id')->ignore(null)->ignore(''),
+                AllowedFilter::exact('assigned_to_id')->ignore(null)->ignore('')
+            ])
             ->paginate(15);
 
         $taskStatuses = TaskStatus::all();
