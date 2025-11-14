@@ -3,34 +3,37 @@
         <div class="grid col-span-full">
             <h1 class="mb-5 text-5xl">@lang('Tasks')</h1>
 
-            <div class="w-full flex items-center">
+            {{-- <div class="w-full flex items-center">
                 <div>
                     <form method="GET" action="{{ route('tasks.index') }}">
                         <div class="flex">
                             <select class="rounded border-gray-300" name="filter[status_id]" id="filter[status_id]">
                                 <option value="">@lang('Status')</option>
                                 @foreach ($taskStatuses as $status)
-                                    <option value="{{ $status->id }}" @selected($status->id == ($filters['status_id'] ?? null))>
-                                        @lang($status->name)
-                                    </option>
+                                <option value="{{ $status->id }}" @selected($status->id == ($filters['status_id'] ??
+                                    null))>
+                                    @lang($status->name)
+                                </option>
                                 @endforeach
                             </select>
                             <select class="rounded border-gray-300" name="filter[created_by_id]"
                                 id="filter[created_by_id]">
                                 <option value="">@lang('Author')</option>
                                 @foreach ($users as $user)
-                                    <option value="{{ $user->id }}" @selected($user->id == ($filters['created_by_id'] ?? null))>
-                                        {{ $user->name }}
-                                    </option>
+                                <option value="{{ $user->id }}" @selected($user->id == ($filters['created_by_id'] ??
+                                    null))>
+                                    {{ $user->name }}
+                                </option>
                                 @endforeach
                             </select>
                             <select class="rounded border-gray-300" name="filter[assigned_to_id]"
                                 id="filter[assigned_to_id]">
                                 <option value="">@lang('Executor')</option>
                                 @foreach ($users as $user)
-                                    <option value="{{ $user->id }}" @selected($user->id == ($filters['assigned_to_id'] ?? null))>
-                                        {{ $user->name }}
-                                    </option>
+                                <option value="{{ $user->id }}" @selected($user->id == ($filters['assigned_to_id'] ??
+                                    null))>
+                                    {{ $user->name }}
+                                </option>
                                 @endforeach
                             </select>
                             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2"
@@ -40,14 +43,56 @@
             </div>
 
             @auth
-                <div class="ml-auto">
-                    <a href="{{ route('tasks.create') }}"
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
-                        @lang('Create a task')
-                    </a>
-                </div>
+            <div class="ml-auto">
+                <a href="{{ route('tasks.create') }}"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
+                    @lang('Create a task')
+                </a>
+            </div>
+            @endauth
+        </div> --}}
+        <div class="w-full flex items-center justify-between">
+            <form method="GET" action="{{ route('tasks.index') }}" class="flex items-center gap-2">
+                <select class="rounded border-gray-300" name="filter[status_id]">
+                    <option value="">@lang('Status')</option>
+                    @foreach ($taskStatuses as $status)
+                        <option value="{{ $status->id }}" @selected($status->id == ($filters['status_id'] ?? null))>
+                            @lang($status->name)
+                        </option>
+                    @endforeach
+                </select>
+
+                <select class="rounded border-gray-300" name="filter[created_by_id]">
+                    <option value="">@lang('Author')</option>
+                    @foreach ($users as $user)
+                        <option value="{{ $user->id }}" @selected($user->id == ($filters['created_by_id'] ?? null))>
+                            {{ $user->name }}
+                        </option>
+                    @endforeach
+                </select>
+
+                <select class="rounded border-gray-300" name="filter[assigned_to_id]">
+                    <option value="">@lang('Executor')</option>
+                    @foreach ($users as $user)
+                        <option value="{{ $user->id }}" @selected($user->id == ($filters['assigned_to_id'] ?? null))>
+                            {{ $user->name }}
+                        </option>
+                    @endforeach
+                </select>
+
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    @lang('Apply')
+                </button>
+            </form>
+
+            @auth
+                <a href="{{ route('tasks.create') }}"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
+                    @lang('Create a task')
+                </a>
             @endauth
         </div>
+
 
         <table class="mt-4">
             <thead class="border-b-2 border-solid border-black text-left">
