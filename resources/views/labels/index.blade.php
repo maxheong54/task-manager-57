@@ -7,7 +7,7 @@
                 <div>
                     <a href="{{ route('labels.create') }}"
                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    @lang('Create a label') </a>
+                        @lang('Create a label') </a>
                 </div>
             @endauth
 
@@ -29,13 +29,16 @@
                         <td>{{ $label->created_at->format('d.m.Y') }}</td>
                         @auth
                             <td>
-                            <form method="POST" action="{{ route('labels.destroy', $label) }}" class="inline">
+                                <a href="{{ route('labels.destroy', $label) }}"
+                                    class="text-red-600 hover:text-red-900"
+                                    onclick="event.preventDefault(); if (confirm('@lang('Are you sure?')')) document.getElementById('delete-label-{{ $label->id }}').submit();">
+                                    @lang('Delete')
+                                </a>
+
+                                <form id="delete-label-{{ $label->id }}" method="POST"
+                                    action="{{ route('labels.destroy', $label) }}" style="display: none;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" onclick="@lang('Are you sure')"
-                                        class="text-red-600 hover:text-red-900">
-                                        @lang('Delete')
-                                    </button>
                                 </form>
                                 <a class="text-blue-600 hover:text-blue-900" href="{{ route('labels.edit', $label) }}">
                                     @lang('Change') </a>
