@@ -73,7 +73,7 @@ class TaskControllerTest extends TestCase
 
         $response = $this->put(route('tasks.update', $task), [
             'name' => 'Updated test task',
-            'status_id' => $task->status->id,
+            'status_id' => $task->status_id,
         ]);
 
         $response->assertRedirect(route('tasks.index'));
