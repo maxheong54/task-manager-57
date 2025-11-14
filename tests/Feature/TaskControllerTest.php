@@ -68,6 +68,7 @@ class TaskControllerTest extends TestCase
 
     public function testUpdateTask(): void
     {
+        /** @var \App\Models\Task $task */
         $task = Task::factory()->create(['name' => 'Test task']);
 
         $response = $this->put(route('tasks.update', $task), [
