@@ -97,7 +97,8 @@
                 </tr>
             @empty
                 <tr>
-                    <td>
+                    <td colspan="7" class="text-center text-transparent">
+                        @lang('No tasks found for selected filters')
                     </td>
                 </tr>
             @endforelse

@@ -298,5 +298,6 @@
     "Task updated": "Задача успешно изменена",
     "Task deleted": "Задача успешно удалена",
     "Failed to delete label": "Не удалось удалить метку",
-    "A status with this name already exists": "Статус с таким именем уже существует"
+    "A status with this name already exists": "Статус с таким именем уже существует",
+    "No tasks found for selected filters": "Нет задач по заданным фильтрам"
 }
