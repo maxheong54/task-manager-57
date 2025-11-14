@@ -10,8 +10,7 @@
                             <select class="rounded border-gray-300" name="filter[status_id]" id="filter[status_id]">
                                 <option value="">@lang('Status')</option>
                                 @foreach ($taskStatuses as $status)
-                                    <option value="{{ $status->id }}"
-                                        @selected($status->id == ($filters['status_id'] ?? null))>
+                                    <option value="{{ $status->id }}" @selected($status->id == ($filters['status_id'] ?? null))>
                                         @lang($status->name)
                                     </option>
                                 @endforeach
@@ -20,8 +19,7 @@
                                 id="filter[created_by_id]">
                                 <option value="">@lang('Author')</option>
                                 @foreach ($users as $user)
-                                    <option value="{{ $user->id }}"
-                                        @selected($user->id == ($filters['created_by_id'] ?? null))>
+                                    <option value="{{ $user->id }}" @selected($user->id == ($filters['created_by_id'] ?? null))>
                                         {{ $user->name }}
                                     </option>
                                 @endforeach
@@ -30,8 +28,7 @@
                                 id="filter[assigned_to_id]">
                                 <option value="">@lang('Executor')</option>
                                 @foreach ($users as $user)
-                                    <option value="{{ $user->id }}"
-                                        @selected($user->id == ($filters['assigned_to_id'] ?? null))>
+                                    <option value="{{ $user->id }}" @selected($user->id == ($filters['assigned_to_id'] ?? null))>
                                         {{ $user->name }}
                                     </option>
                                 @endforeach
@@ -66,7 +63,7 @@
                     @endauth
                 </tr>
             </thead>
-            @foreach ($tasks as $task)
+            @forelse ($tasks as $task)
                 <tr class="border-b border-dashed text-left">
                     <td>{{ $task->id }}</td>
                     <td>@lang($task->status->name)</td>
@@ -81,12 +78,15 @@
                     @auth
                         <td class="flex gap-1">
                             @can('delete', $task)
-                                <form method="POST" action="{{ route('tasks.destroy', $task) }}" class="inline">
+                                <a href="{{ route('tasks.destroy', $task) }}" class="text-red-600 hover:text-red-900"
+                                    onclick="event.preventDefault(); if (confirm('@lang('Are you sure?')')) document.getElementById('delete-task-{{ $task->id }}').submit();">
+                                    @lang('Delete')
+                                </a>
+
+                                <form id="delete-task-{{ $task->id }}" method="POST" action="{{ route('tasks.destroy', $task) }}"
+                                    style="display: none;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" onclick="@lang('Are you sure')" class="text-red-600 hover:text-red-900">
-                                        @lang('Delete')
-                                    </button>
                                 </form>
                             @endcan
                             <a class="text-blue-600 hover:text-blue-900" href="{{ route('tasks.edit', $task) }}">
@@ -95,8 +95,12 @@
                         </td>
                     @endauth
                 </tr>
-            @endforeach
-
+            @empty
+                <tr>
+                    <td>
+                    </td>
+                </tr>
+            @endforelse
         </table>
 
         <x-pagination :paginator="$tasks" />
