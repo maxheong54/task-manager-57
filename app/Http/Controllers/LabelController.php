@@ -63,7 +63,7 @@ class LabelController extends Controller
     public function update(Request $request, Label $label): RedirectResponse
     {
         $validated = $request->validate([
-            'name' => 'required|unique:lables,name',
+            'name' => 'required|unique:labels,name',
         ], [
             '*.required' => 'This is a required field',
             'name.unique' => 'A label with this name already exists',
