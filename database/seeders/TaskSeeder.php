@@ -39,7 +39,7 @@ class TaskSeeder extends Seeder
                 'Запилить тёмную тему для админки',
                 'Сделать задачу, чтобы сделать задачу',
         ];
-        
+
         foreach ($tasks as $task) {
             Task::factory()->create(['name' => $task]);
         }

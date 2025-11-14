@@ -37,4 +37,4 @@ Route::resource('labels', LabelController::class)
     ->except(['index', 'show'])
     ->middleware('auth');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
