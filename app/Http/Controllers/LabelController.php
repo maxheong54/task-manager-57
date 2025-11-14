@@ -34,9 +34,10 @@ class LabelController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:labels,name',
         ], [
-            '*.required' => 'This is a required field'
+            '*.required' => 'This is a required field',
+            'name.unique' => 'A label with this name already exists',
         ]);
 
         $validated['description'] = $request->input('description', null);
@@ -62,9 +63,10 @@ class LabelController extends Controller
     public function update(Request $request, Label $label): RedirectResponse
     {
         $validated = $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:lables,name',
         ], [
             '*.required' => 'This is a required field',
+            'name.unique' => 'A label with this name already exists',
         ]);
 
         if ($validated['name'] === $label->name) {
