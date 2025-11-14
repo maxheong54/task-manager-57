@@ -17,11 +17,10 @@ class Label extends Model
     ];
 
     /**
-     * @return BelongsToMany<Task, Label, \Illuminate\Database\Eloquent\Relations\Pivot>
+     * @return BelongsToMany<Task, Label>
      */
     public function tasks(): BelongsToMany
     {
-        /** @var BelongsToMany<Task, Label> */
         return $this->belongsToMany(Task::class);
     }
 }
