@@ -13,12 +13,12 @@ class TaskStatus extends Model
 
     protected $fillable = ['name'];
 
-    /**
-     * @return HasMany<Task, TaskStatus>
-     */
+    // /**
+    //  * @return HasMany<Task, TaskStatus>
+    //  */
     public function tasks(): HasMany
     {
-        /** @var HasMany<Task, TaskStatus> */
+        // /** @var HasMany<Task, TaskStatus> */
         return $this->hasMany(Task::class, 'status_id');
     }
 }
