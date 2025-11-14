@@ -8,11 +8,13 @@
 
         <div class="flex items-center lg:order-2">
             @auth
-                <form class="inline-block" method="POST" action="{{ route('logout') }}">
+                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
+                    @lang('Logout')
+                </a>
+                <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none;">
                     @csrf
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        @lang('Logout')
-                    </button>
                 </form>
             @else
                 <a href="{{ route('login') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
@@ -28,17 +30,20 @@
         <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1">
             <ul class="flex flex-col  font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                 <li>
-                    <a href="{{ route('tasks.index') }}" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
+                    <a href="{{ route('tasks.index') }}"
+                        class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
                         @lang('Tasks')
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('task_statuses.index') }}" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
+                    <a href="{{ route('task_statuses.index') }}"
+                        class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
                         @lang('Statuses')
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('labels.index') }}" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
+                    <a href="{{ route('labels.index') }}"
+                        class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
                         @lang('Tags')
                     </a>
                 </li>

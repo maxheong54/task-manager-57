@@ -10,7 +10,7 @@
                         @lang('Create a status')
                     </a>
                 </div>
-            @endauth    
+            @endauth
 
             <table class="mt-4">
                 <thead class="border-b-2 border-solid border-black text-left">
@@ -28,18 +28,23 @@
                         <td>@lang($status->created_at->format('d.m.Y'))</td>
                         <td>
                             @auth
-                                <form method="POST" action="{{ route('task_statuses.destroy', $status) }}" class="inline">
+                                <a href="{{ route('task_statuses.destroy', $status) }}"
+                                    class="text-red-600 hover:text-red-900"
+                                    onclick="event.preventDefault(); if (confirm('@lang('Are you sure?')')) document.getElementById('delete-status-{{ $status->id }}').submit();">
+                                    @lang('Delete')
+                                </a>
+
+                                <form id="delete-status-{{ $status->id }}" method="POST"
+                                    action="{{ route('task_statuses.destroy', $status) }}" style="display: none;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" onclick="@lang('Are you sure')" class="text-red-600 hover:text-red-900">
-                                        @lang('Delete')
-                                    </button>
                                 </form>
+
 
                                 <a class="text-blue-600 hover:text-blue-900" href="{{ route('task_statuses.edit', $status) }}">
                                     @lang('Change')
                                 </a>
-                            @endauth    
+                            @endauth
                         </td>
                     </tr>
                 @endforeach

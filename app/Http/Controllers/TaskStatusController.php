@@ -34,6 +34,9 @@ class TaskStatusController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required'
+        ], [
+            '*.required' => 'This is a required field'
+
         ]);
 
         TaskStatus::create($validated);
