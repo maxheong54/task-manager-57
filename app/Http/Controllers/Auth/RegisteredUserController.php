@@ -35,10 +35,10 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ], [
-            'name.max' => __('validation.name.max'),
-            'email.unique' => __('validation.email.unique'),
-            'email.max' => __('validation.email.max'),
-            'password.confirmed' => __('validation.password.confirmed'),
+            'name.max' => 'validation.name.max',
+            'email.unique' => 'validation.email.unique',
+            'email.max' => 'validation.email.max',
+            'password.confirmed' => 'validation.password.confirmed',
         ]);
 
         $user = User::create([

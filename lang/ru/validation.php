@@ -16,7 +16,6 @@ return [
     'email.unique'           => 'The email has already been taken.',
     'email.max'              => 'The email must not be greater than :max characters.',
 
-
     'accepted'               => 'Вы должны принять :attribute.',
     'accepted_if'            => 'Вы должны принять :attribute, когда :other содержит :value.',
     'active_url'             => 'Значение поля :attribute должно быть действительным URL адресом.',
@@ -112,7 +111,7 @@ return [
         'array'   => 'Количество элементов в поле :attribute должно быть не меньше :min.',
         'file'    => 'Размер файла, указанный в поле :attribute, должен быть не меньше :min Кб.',
         'numeric' => 'Значение поля :attribute должно быть не меньше :min.',
-        'string'  => 'Количество символов в поле :attribute должно быть не меньше :min.',
+        'string'  => 'Пароль должен иметь длину не менее :min символов',
     ],
     'min_digits'             => 'Значение поля :attribute должно содержать не меньше :min цифр.',
     'missing'                => 'Значение поля :attribute должно отсутствовать.',
