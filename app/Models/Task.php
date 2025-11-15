@@ -21,39 +21,23 @@ class Task extends Model
         'assigned_to_id',
     ];
 
-    // /**
-    //  * @return BelongsTo<TaskStatus, Task>
-    //  */
     public function status(): BelongsTo
     {
-        // /** @var BelongsTo<TaskStatus, Task> */
         return $this->belongsTo(TaskStatus::class, 'status_id');
     }
 
-    // /**
-    //  * @return BelongsTo<User, Task>
-    //  */
     public function author(): BelongsTo
     {
-        // /** @var BelongsTo<User, Task> */
         return $this->belongsTo(User::class, 'created_by_id');
     }
 
-    // /**
-    //  * @return BelongsTo<User, Task>
-    //  */
     public function executor(): BelongsTo
     {
-        // /** @var BelongsTo<User, Task> */
         return $this->belongsTo(User::class, 'assigned_to_id');
     }
 
-    // /**
-    //  * @return BelongsToMany<Label, Task, \Illuminate\Database\Eloquent\Relations\Pivot>
-    //  */
     public function labels(): BelongsToMany
     {
-        // /** @var BelongsToMany<Label, Task> */
         return $this->belongsToMany(Label::class);
     }
 }
