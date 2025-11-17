@@ -55,7 +55,7 @@ class User extends Authenticatable
     public function authoredTasks(): HasMany
     {
         /** @var HasMany<Task, User> */
-        return $this->hasMany(Task::class, 'created_by_id');
+        return $this->hasMany(Task::class);
     }
 
     /**
@@ -64,6 +64,6 @@ class User extends Authenticatable
     public function assignedTasks(): HasMany
     {
         /** @var HasMany<Task, User> */
-        return $this->hasMany(Task::class, 'assigned_to_id');
+        return $this->hasMany(Task::class);
     }
 }

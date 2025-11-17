@@ -45,7 +45,7 @@
                     <div>
                         <select class="rounded border-gray-300 w-1/3" name="assigned_to_id" id="assigned_to_id">
                             @foreach ($users as $user)
-                                <option value="{{ $user->id }}" @selected($user->id === ($task->executor->id ?? null))>
+                                <option value="{{ $user->id }}" @selected($user->id === ($task->assignedTo->id ?? null))>
                                     {{ $user->name }}
                                 </option>
                             @endforeach

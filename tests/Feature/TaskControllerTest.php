@@ -94,7 +94,7 @@ class TaskControllerTest extends TestCase
     public function testDeleteTask(): void
     {
         $task = Task::factory()
-            ->for($this->user, 'author')
+            ->for($this->user, 'createdBy')
             ->create();
 
         $response = $this->delete(route('tasks.destroy', $task));

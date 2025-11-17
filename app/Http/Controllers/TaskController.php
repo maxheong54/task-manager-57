@@ -128,7 +128,7 @@ class TaskController extends Controller
     {
         // $task->delete();
 
-        if ($task->author->is(auth()->user())) {
+        if ($task->createdBy()->is(auth()->user())) {
             $task->delete();
             flash('Task deleted')->success();
         }

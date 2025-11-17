@@ -69,8 +69,8 @@
                             @lang($task->name)
                         </a>
                     </td>
-                    <td>@lang($task->author->name)</td>
-                    <td>@lang($task->executor->name ?? '')</td>
+                    <td>@lang($task->createdBy->name)</td>
+                    <td>@lang($task->assignedTo->name ?? '')</td>
                     <td>{{ $task->created_at->format('d.m.Y') }}</td>
                     @auth
                         <td class="flex gap-1">
@@ -87,7 +87,7 @@
                                 </form>
                             @endcan --}}
 
-                            @if($task->author->is($user))
+                            @if($task->createdBy->is($user))
                                 <a href="{{ route('tasks.destroy', $task) }}" class="text-red-600 hover:text-red-900"
                                     onclick="event.preventDefault(); if (confirm('@lang('Are you sure?')')) document.getElementById('delete-task-{{ $task->id }}').submit();">
                                     @lang('Delete')

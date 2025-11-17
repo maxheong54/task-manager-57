@@ -23,17 +23,17 @@ class Task extends Model
 
     public function status(): BelongsTo
     {
-        return $this->belongsTo(TaskStatus::class, 'status_id');
+        return $this->belongsTo(TaskStatus::class);
     }
 
-    public function author(): BelongsTo
+    public function createdBy(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'created_by_id');
+        return $this->belongsTo(User::class);
     }
 
-    public function executor(): BelongsTo
+    public function assignedTo(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'assigned_to_id');
+        return $this->belongsTo(User::class);
     }
 
     public function labels(): BelongsToMany
