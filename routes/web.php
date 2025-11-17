@@ -10,11 +10,6 @@ Route::get('/', function () {
     return view('pages.home');
 })->name('home');
 
-Route::middleware('auth')->group(function () {
-    Route::resource('profile', ProfileController::class)
-        ->only(['edit', 'update', 'destroy']);
-});
-
 Route::resource('task_statuses', TaskStatusController::class)
     ->only(['index']);
 Route::resource('task_statuses', TaskStatusController::class)

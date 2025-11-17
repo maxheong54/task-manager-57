@@ -74,19 +74,6 @@
                     <td>{{ $task->created_at->format('d.m.Y') }}</td>
                     @auth
                         <td class="flex gap-1">
-                            {{-- @can('delete', $task)
-                                <a href="{{ route('tasks.destroy', $task) }}" class="text-red-600 hover:text-red-900"
-                                    onclick="event.preventDefault(); if (confirm('@lang('Are you sure?')')) document.getElementById('delete-task-{{ $task->id }}').submit();">
-                                    @lang('Delete')
-                                </a>
-
-                                <form id="delete-task-{{ $task->id }}" method="POST" action="{{ route('tasks.destroy', $task) }}"
-                                    style="display: none;">
-                                    @csrf
-                                    @method('DELETE')
-                                </form>
-                            @endcan --}}
-
                             @if($task->createdBy->is($user))
                                 <a href="{{ route('tasks.destroy', $task) }}" class="text-red-600 hover:text-red-900"
                                     onclick="event.preventDefault(); if (confirm('{{ __('Are you sure?') }}')) document.getElementById('delete-task-{{ $task->id }}').submit();">
