@@ -54,17 +54,17 @@ class LabelController extends Controller
      */
     public function update(LabelRequest $request, Label $label): RedirectResponse
     {
-        $validated = $request->validated();
+        // $validated = $request->validated();
 
-        if ($validated['name'] === $label->name) {
-            throw ValidationException::withMessages([
-                'name' => 'A label with this name already exists',
-            ]);
-        }
+        // if ($validated['name'] === $label->name) {
+        //     throw ValidationException::withMessages([
+        //         'name' => 'A label with this name already exists',
+        //     ]);
+        // }
 
         // $validated['description'] = $request->input('description', null);
 
-        $label->update($validated);
+        $label->update($request->validated());
 
         flash('Label updated')->success();
 
