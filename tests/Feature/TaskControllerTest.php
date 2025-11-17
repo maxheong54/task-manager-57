@@ -13,11 +13,14 @@ class TaskControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected User $user;
+
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->actingAs(User::factory()->create());
+        $this->user = User::factory()->create();
+        $this->actingAs($this->user);
     }
 
     public function testDisplaysTasksIndex(): void
@@ -90,7 +93,9 @@ class TaskControllerTest extends TestCase
 
     public function testDeleteTask(): void
     {
-        $task = Task::factory()->create();
+        $task = Task::factory()
+            ->for($this->user, 'author')
+            ->create();
 
         $response = $this->delete(route('tasks.destroy', $task));
 

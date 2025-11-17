@@ -137,9 +137,12 @@ class TaskController extends Controller
      */
     public function destroy(Task $task): RedirectResponse
     {
-        $task->delete();
+        // $task->delete();
 
-        flash('Task deleted')->success();
+        if ($task->author->is(auth()->user())) {
+            $task->delete();
+            flash('Task deleted')->success();
+        }
 
         return redirect(route('tasks.index'));
     }
