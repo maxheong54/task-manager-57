@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LabelRequest;
 use App\Models\Label;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -31,19 +32,9 @@ class LabelController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(LabelRequest $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'name' => 'required|unique:labels,name',
-            'description' => 'nullable|string',
-        ], [
-            '*.required' => 'This is a required field',
-            'name.unique' => 'A label with this name already exists',
-        ]);
-
-        // $validated['description'] = $request->input('description', null);
-
-        Label::create($validated);
+        Label::create($request->validated());
 
         flash('Label successfully created')->success();
 
@@ -61,15 +52,9 @@ class LabelController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Label $label): RedirectResponse
+    public function update(LabelRequest $request, Label $label): RedirectResponse
     {
-        $validated = $request->validate([
-            'name' => 'required|unique:labels,name',
-            'description' => 'nullable|string',
-        ], [
-            '*.required' => 'This is a required field',
-            'name.unique' => 'A label with this name already exists',
-        ]);
+        $validated = $request->validated();
 
         if ($validated['name'] === $label->name) {
             throw ValidationException::withMessages([

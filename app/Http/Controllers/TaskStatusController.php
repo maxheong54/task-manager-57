@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TaskStatusRequest;
 use App\Models\TaskStatus;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -30,16 +31,10 @@ class TaskStatusController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(TaskStatusRequest $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'name' => 'required|unique:task_statuses,name'
-        ], [
-            '*.required' => 'This is a required field',
-            'name.unique' => 'A status with this name already exists',
-        ]);
 
-        TaskStatus::create($validated);
+        TaskStatus::create($request->validated());
 
         flash('Status successfully created')->success();
 
@@ -57,13 +52,9 @@ class TaskStatusController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, TaskStatus $taskStatus): RedirectResponse
+    public function update(TaskStatusRequest $request, TaskStatus $taskStatus): RedirectResponse
     {
-        $validated = $request->validate([
-            'name' => 'required'
-        ]);
-
-        $taskStatus->update($validated);
+        $taskStatus->update($request->validated());
 
         flash('Task status updated')->success();
 

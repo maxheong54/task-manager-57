@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UpdateTaskRequest;
+use App\Http\Requests\TaskRequest;
 use App\Models\Label;
 use App\Models\Task;
 use App\Models\TaskStatus;
@@ -65,22 +65,12 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(TaskRequest $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'name' => 'required',
-            'description' => 'nullable|string',
-            'status_id' => 'required',
-            'assigned_to_id' => 'nullable|exists:users,id',
-            'labels' => 'nullable|array',
-            'labels.*' => 'exists:labels,id'
-        ], [
-            '*.required' => 'This is a required field'
+        $task = Task::create([
+            ...$request->validated(),
+            'created_by_id' => auth()->id(),
         ]);
-
-        $validated['created_by_id'] = auth()->id();
-
-        $task = Task::create($validated);
 
         if ($request->has('labels')) {
             $task->labels()->sync($request->input('labels', []));
@@ -118,21 +108,9 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Task $task): RedirectResponse
+    public function update(TaskRequest $request, Task $task): RedirectResponse
     {
-        $validated = $request->validate([
-            'name' => 'required',
-            'description' => 'nullable|string',
-            'status_id' => 'required',
-            'assigned_to_id' => 'nullable|exists:users,id',
-            'labels' => 'nullable|array',
-            'labels.*' => 'exists:labels,id'
-        ], [
-            '*.required' => 'This is a required field'
-        ]);
-
-
-        $task->update($validated);
+        $task->update($request->validated());
 
         if ($request->has('labels')) {
             $task->labels()->sync($request->input('labels', []));
