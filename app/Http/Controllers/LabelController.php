@@ -35,12 +35,13 @@ class LabelController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|unique:labels,name',
+            'description' => 'nullable|string',
         ], [
             '*.required' => 'This is a required field',
             'name.unique' => 'A label with this name already exists',
         ]);
 
-        $validated['description'] = $request->input('description', null);
+        // $validated['description'] = $request->input('description', null);
 
         Label::create($validated);
 
@@ -64,6 +65,7 @@ class LabelController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|unique:labels,name',
+            'description' => 'nullable|string',
         ], [
             '*.required' => 'This is a required field',
             'name.unique' => 'A label with this name already exists',
@@ -75,7 +77,7 @@ class LabelController extends Controller
             ]);
         }
 
-        $validated['description'] = $request->input('description', null);
+        // $validated['description'] = $request->input('description', null);
 
         $label->update($validated);
 

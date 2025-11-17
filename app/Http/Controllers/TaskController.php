@@ -69,18 +69,22 @@ class TaskController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
-            'status_id' => 'required'
+            'description' => 'nullable|string',
+            'status_id' => 'required',
+            'assigned_to_id' => 'nullable|exists:users,id',
+            'labels' => 'nullable|array',
+            'labels.*' => 'exists:labels,id'
         ], [
             '*.required' => 'This is a required field'
         ]);
 
         $validated['created_by_id'] = auth()->id();
-        $validated['description'] = $request->input('description');
-        $validated['assigned_to_id'] = $request->input('assigned_to_id');
 
         $task = Task::create($validated);
 
-        $task->labels()->sync($request->input('labels', []));
+        if ($request->has('labels')) {
+            $task->labels()->sync($request->input('labels', []));
+        }
 
         flash('Task successfully created')->success();
 
@@ -118,14 +122,21 @@ class TaskController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
+            'description' => 'nullable|string',
             'status_id' => 'required',
+            'assigned_to_id' => 'nullable|exists:users,id',
+            'labels' => 'nullable|array',
+            'labels.*' => 'exists:labels,id'
+        ], [
+            '*.required' => 'This is a required field'
         ]);
 
-        $validated['description'] = $request->input('description', '');
-        $validated['assigned_to_id'] = $request->input('assigned_to_id', null);
 
         $task->update($validated);
-        $task->labels()->sync($request->input('labels', []));
+
+        if ($request->has('labels')) {
+            $task->labels()->sync($request->input('labels', []));
+        }
 
         flash('Task updated')->success();
 
