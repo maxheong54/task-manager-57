@@ -12,6 +12,7 @@ return [
         'symbols'       => 'Значение поля :attribute должно содержать хотя бы один символ.',
         'uncompromised' => 'Значение поля :attribute обнаружено в утёкших данных. Пожалуйста, выберите другое значение для :attribute.',
     ],
+
     'name.max'               => 'The name must not be greater than :max characters.',
     'email.unique'           => 'The email has already been taken.',
     'email.max'              => 'The email must not be greater than :max characters.',

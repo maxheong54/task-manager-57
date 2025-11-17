@@ -6,8 +6,6 @@ use App\Http\Requests\LabelRequest;
 use App\Models\Label;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
 
 class LabelController extends Controller
 {
@@ -54,16 +52,6 @@ class LabelController extends Controller
      */
     public function update(LabelRequest $request, Label $label): RedirectResponse
     {
-        // $validated = $request->validated();
-
-        // if ($validated['name'] === $label->name) {
-        //     throw ValidationException::withMessages([
-        //         'name' => 'A label with this name already exists',
-        //     ]);
-        // }
-
-        // $validated['description'] = $request->input('description', null);
-
         $label->update($request->validated());
 
         flash('Label updated')->success();
