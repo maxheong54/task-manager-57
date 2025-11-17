@@ -38,7 +38,7 @@ class TaskRequest extends FormRequest
     public function messages(): array
     {
         return [
-            '*.required' => 'This is a required field',
+            '*.required' => __('validation.required'),
         ];
     }
 }

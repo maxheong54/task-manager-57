@@ -33,8 +33,8 @@ class TaskStatusRequest extends FormRequest
     public function messages(): array
     {
         return [
-            '*.required' => 'This is a required field',
-            'name.unique' => 'A status with this name already exists',
+            '*.required' => __('validation.required'),
+            'name.unique' => __('validation.status.unique'),
         ];
     }
 }

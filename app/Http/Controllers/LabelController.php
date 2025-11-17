@@ -36,7 +36,7 @@ class LabelController extends Controller
     {
         Label::create($request->validated());
 
-        flash('Label successfully created')->success();
+        flash(__('Label successfully created'))->success();
 
         return redirect(route('labels.index'));
     }
@@ -77,10 +77,10 @@ class LabelController extends Controller
     public function destroy(Label $label): RedirectResponse
     {
         if ($label->tasks()->exists()) {
-            flash('Failed to delete label')->error();
+            flash(__('Failed to delete label'))->error();
         } else {
             $label->delete();
-            flash('Label deleted')->success();
+            flash(__('Label deleted'))->success();
         }
 
         return redirect(route('labels.index'));

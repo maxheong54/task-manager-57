@@ -2,7 +2,7 @@
     <div class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
         <a href="{{ route('home') }}" class="flex items-center">
             <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-                @lang('Task Manager')
+                {{ __('Task Manager') }}
             </span>
         </a>
 
@@ -11,18 +11,18 @@
                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();"
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
-                    @lang('Logout')
+                    {{ __('Logout') }}
                 </a>
                 <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none;">
                     @csrf
                 </form>
             @else
                 <a href="{{ route('login') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    @lang('Log In')
+                    {{ __('Log In') }}
                 </a>
                 <a href="{{ route('register') }}"
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
-                    @lang('Sign In')
+                    {{ __('Sign In') }}
                 </a>
             @endauth
         </div>
@@ -32,19 +32,19 @@
                 <li>
                     <a href="{{ route('tasks.index') }}"
                         class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
-                        @lang('Tasks')
+                        {{ __('Tasks') }}
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('task_statuses.index') }}"
                         class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
-                        @lang('Statuses')
+                        {{ __('Statuses') }}
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('labels.index') }}"
                         class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
-                        @lang('Tags')
+                        {{ __('Tags') }}
                     </a>
                 </li>
             </ul>

@@ -15,6 +15,9 @@ return [
     'name.max'               => 'The name must not be greater than :max characters.',
     'email.unique'           => 'The email has already been taken.',
     'email.max'              => 'The email must not be greater than :max characters.',
+    'label.unique'           => 'Метка с таким именем уже существует',
+    'status.unique'          => 'Статус с таким именем уже существует',
+
 
     'accepted'               => 'Вы должны принять :attribute.',
     'accepted_if'            => 'Вы должны принять :attribute, когда :other содержит :value.',
@@ -135,7 +138,7 @@ return [
     'prohibited_unless'      => 'Значение поля :attribute запрещено, если :other не состоит в :values.',
     'prohibits'              => 'Значение поля :attribute запрещает присутствие :other.',
     'regex'                  => 'Значение поля :attribute имеет некорректный формат.',
-    'required'               => 'Поле :attribute обязательно.',
+    'required'               => 'Это обязательное поле',
     'required_array_keys'    => 'Массив, указанный в поле :attribute, обязательно должен иметь ключи: :values',
     'required_if'            => 'Поле :attribute обязательно для заполнения, когда :other содержит :value.',
     'required_if_accepted'   => 'Поле :attribute обязательно, когда :other принято.',

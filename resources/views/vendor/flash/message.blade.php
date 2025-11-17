@@ -18,7 +18,7 @@
             {{ $message['important'] ? 'border-2 border-black' : '' }}
         " role="alert">
             <div class="flex justify-between items-center">
-                <span class="w-full text-center">@lang($message['message'])</span>
+                <span class="w-full text-center">{{ $message['message'] }}</span>
                 @if ($message['important'])
                     <button type="button"
                             class="ml-4 text-white hover:text-gray-200"

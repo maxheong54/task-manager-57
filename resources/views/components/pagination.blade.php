@@ -1,28 +1,28 @@
 <div class="mt-4">
-    <nav role="navigation" aria-label="@lang('Pagination Navigation')" class="flex items-center justify-between">
+    <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}" class="flex items-center justify-between">
         {{-- Mobile version --}}
         <div class="flex justify-between flex-1 sm:hidden">
             @if ($paginator->onFirstPage())
                 <span
                     class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default rounded-md dark:text-gray-600 dark:bg-gray-800 dark:border-gray-600">
-                    &laquo; @lang('Previous')
+                    &laquo; {{ __('Previous') }}
                 </span>
             @else
                 <a href="{{ $paginator->previousPageUrl() }}"
                     class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:focus:border-blue-700 dark:active:bg-gray-700 dark:active:text-gray-300">
-                    &laquo; @lang('Previous')
+                    &laquo; {{ __('Previous') }}
                 </a>
             @endif
 
             @if ($paginator->hasMorePages())
                 <a href="{{ $paginator->nextPageUrl() }}"
                     class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:focus:border-blue-700 dark:active:bg-gray-700 dark:active:text-gray-300">
-                    @lang('Next') &raquo;
+                    {{ __('Next') }} &raquo;
                 </a>
             @else
                 <span
                     class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default rounded-md dark:text-gray-600 dark:bg-gray-800 dark:border-gray-600">
-                    @lang('Next') &raquo;
+                    {{ __('Next') }} &raquo;
                 </span>
             @endif
         </div>
@@ -31,13 +31,13 @@
         <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
             <div>
                 <p class="text-sm text-gray-700 dark:text-gray-400">
-                    @lang('Showing')
+                    {{ __('Showing') }}
                     <span class="font-medium">{{ $paginator->firstItem() }}</span>
-                    @lang('to')
+                    {{ __('to') }}
                     <span class="font-medium">{{ $paginator->lastItem() }}</span>
-                    @lang('of')
+                    {{ __('of') }}
                     <span class="font-medium">{{ $paginator->total() }}</span>
-                    @lang('results')
+                    {{ __('results') }}
                 </p>
             </div>
 

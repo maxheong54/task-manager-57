@@ -76,7 +76,7 @@ class TaskController extends Controller
             $task->labels()->sync($request->input('labels', []));
         }
 
-        flash('Task successfully created')->success();
+        flash(__('Task successfully created'))->success();
 
         return redirect(route('tasks.index'));
     }
@@ -116,7 +116,7 @@ class TaskController extends Controller
             $task->labels()->sync($request->input('labels', []));
         }
 
-        flash('Task updated')->success();
+        flash(__('Task updated'))->success();
 
         return redirect(route('tasks.index'));
     }
@@ -130,7 +130,7 @@ class TaskController extends Controller
 
         if ($task->createdBy()->is(auth()->user())) {
             $task->delete();
-            flash('Task deleted')->success();
+            flash(__('Task deleted'))->success();
         }
 
         return redirect(route('tasks.index'));

@@ -36,7 +36,7 @@ class TaskStatusController extends Controller
 
         TaskStatus::create($request->validated());
 
-        flash('Status successfully created')->success();
+        flash(__('Status successfully created'))->success();
 
         return redirect(route('task_statuses.index'));
     }
@@ -56,7 +56,7 @@ class TaskStatusController extends Controller
     {
         $taskStatus->update($request->validated());
 
-        flash('Task status updated')->success();
+        flash(__('Task status updated'))->success();
 
         return redirect(route('task_statuses.index'));
     }
@@ -67,10 +67,10 @@ class TaskStatusController extends Controller
     public function destroy(TaskStatus $taskStatus): RedirectResponse
     {
         if ($taskStatus->tasks()->exists()) {
-            flash('Failed to delete status')->error();
+            flash(__('Failed to delete status'))->error();
         } else {
             $taskStatus->delete();
-            flash('Task status deleted')->success();
+            flash(__('Task status deleted'))->success();
         }
 
         return redirect(route('task_statuses.index'));

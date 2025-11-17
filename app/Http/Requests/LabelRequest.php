@@ -34,8 +34,8 @@ class LabelRequest extends FormRequest
     public function messages(): array
     {
         return [
-            '*.required' => 'This is a required field',
-            'name.unique' => 'A label with this name already exists',
+            '*.required' => __('validation.required'),
+            'name.unique' => __('validation.label.unique'),
         ];
     }
 }
