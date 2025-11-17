@@ -76,7 +76,7 @@ class TaskController extends Controller
             $task->labels()->sync($request->input('labels', []));
         }
 
-        flash(__('Task successfully created'))->success();
+        flash(__('flashes.tasks.create.success'))->success();
 
         return redirect(route('tasks.index'));
     }
@@ -116,7 +116,7 @@ class TaskController extends Controller
             $task->labels()->sync($request->input('labels', []));
         }
 
-        flash(__('Task updated'))->success();
+        flash(__('flashes.tasks.update.success'))->success();
 
         return redirect(route('tasks.index'));
     }
@@ -126,11 +126,9 @@ class TaskController extends Controller
      */
     public function destroy(Task $task): RedirectResponse
     {
-        // $task->delete();
-
         if ($task->createdBy()->is(auth()->user())) {
             $task->delete();
-            flash(__('Task deleted'))->success();
+            flash(__('flashes.tasks.delete.success'))->success();
         }
 
         return redirect(route('tasks.index'));

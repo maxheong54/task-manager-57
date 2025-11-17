@@ -19,7 +19,32 @@ return [
         ],
         'delete' => [
             'success' => 'Label successfully deleted',
-            'error' => 'Failed to delete label'
-        ]
+            'error' => 'Failed to delete label',
+        ],
+    ],
+
+    'tasks' => [
+        'create' => [
+            'success' => 'Task successfully created',
+        ],
+        'update' => [
+            'success' => 'Task successfully updated',
+        ],
+        'delete' => [
+            'success' => 'Task successfully deleted',
+        ],
+    ],
+
+    'statuses' => [
+        'create' => [
+            'success' => 'Status successfully created',
+        ],
+        'update' => [
+            'success' => 'Status successfully updated',
+        ],
+        'delete' => [
+            'success' => 'Status successfully deleted',
+            'error' => 'Failed to delete status',
+        ],
     ],
 ];
