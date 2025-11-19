@@ -72,9 +72,9 @@ class TaskController extends Controller
             'created_by_id' => auth()->id(),
         ]);
 
-        if ($request->has('labels')) {
-            $task->labels()->sync($request->input('labels', []));
-        }
+        $task->labels()->sync(
+            collect($request->input('labels', []))->filter()
+        );
 
         flash(__('flashes.tasks.create.success'))->success();
 
@@ -112,9 +112,9 @@ class TaskController extends Controller
     {
         $task->update($request->validated());
 
-        if ($request->has('labels')) {
-            $task->labels()->sync($request->input('labels', []));
-        }
+        $task->labels()->sync(
+            collect($request->input('labels', []))->filter()
+        );
 
         flash(__('flashes.tasks.update.success'))->success();
 
