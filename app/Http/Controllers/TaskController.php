@@ -127,6 +127,7 @@ class TaskController extends Controller
     public function destroy(Task $task): RedirectResponse
     {
         if ($task->createdBy()->is(auth()->user())) {
+            $task->labels()->detach();
             $task->delete();
             flash(__('flashes.tasks.delete.success'))->success();
         }
